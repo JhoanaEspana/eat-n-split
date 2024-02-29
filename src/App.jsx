@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import FriendsList from './components/FriendsList'
 import Header from './components/ui/Header'
 import FormAddFriend from './components/FormAddFriend'
+import FormSplitBill from './components/FormSplitBill'
 
 const initialFriends = [
   {
@@ -36,7 +37,7 @@ function App() {
           <FormAddFriend />
         </Grid>
         <Grid item xs={5}>
-          <FriendsList friends={initialFriends} />
+          <FormSplitBill />
         </Grid>
       </Grid>
     </Grid>
