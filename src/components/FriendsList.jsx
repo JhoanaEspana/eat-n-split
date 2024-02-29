@@ -1,6 +1,6 @@
 import Friend from './Friend'
 import Title from './ui/Title'
-import IcoHeaderUsers from '../components/ui/icons/IcoHeaderUsers'
+import { IcoHeaderUsers } from '../components/ui/icons/IcoHeaderUsers'
 
 const FriendsList = ({ friends }) => {
   return (

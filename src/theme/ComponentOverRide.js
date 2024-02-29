@@ -64,6 +64,31 @@ const components = {
   }, */
 
   MuiButton: {
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+          backgroundColor: '#e8eaf1',
+          border: '2px solid #f07f66',
+          '&:hover': {
+            backgroundColor: 'rgb(240 127 102 / 11%)',
+            border: '2px solid #f07f66',
+          },
+        },
+      },
+    ],
+    styleOverrides: {
+      root: {
+        textTransform: 'none',
+        boxShadow: 'none',
+        '&:hover': {
+          boxShadow: 'none',
+        },
+      },
+    },
+  },
+
+  MuiButtonOutlined: {
     styleOverrides: {
       root: {
         textTransform: 'none',
@@ -83,6 +108,36 @@ const components = {
         padding: '10px 15px',
         margin: '20px 0',
         boxShadow: '3px 4px 12px rgba(0,0,0,0.08)',
+      },
+    },
+  },
+
+  MuiFilledInput: {
+    styleOverrides: {
+      root: {
+        backgroundColor: '#ECF0F5',
+        '&:hover:not(.Mui-disabled, .Mui-error)': {
+          backgroundColor: '#DCE1E9',
+        },
+        '&.Mui-focused': {
+          backgroundColor: '#ECF0F5',
+        },
+      },
+    },
+  },
+
+  MuiFormControl: {
+    styleOverrides: {
+      root: {
+        margin: '0 0 35px',
+      },
+    },
+  },
+
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        color: '#4c70a0',
       },
     },
   },
