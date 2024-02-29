@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@mui/material'
 
 const Header = () => {
   return (
-    <Grid container spacing={2} sx={{ my: '80px' }}>
+    <Grid container spacing={2} sx={{ my: '50px' }}>
       <Grid item xs={8}>
         <Typography
           variant='h4'

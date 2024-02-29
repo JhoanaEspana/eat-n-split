@@ -84,6 +84,9 @@ const components = {
         '&:hover': {
           boxShadow: 'none',
         },
+        '&.Mui-disabled': {
+          backgroundColor: '#DCE1E9',
+        },
       },
     },
   },

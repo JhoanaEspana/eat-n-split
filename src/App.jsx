@@ -3,6 +3,7 @@ import FriendsList from './components/FriendsList'
 import Header from './components/ui/Header'
 import FormAddFriend from './components/FormAddFriend'
 import FormSplitBill from './components/FormSplitBill'
+import { useState } from 'react'
 
 const initialFriends = [
   {
@@ -26,6 +27,12 @@ const initialFriends = [
 ]
 
 function App() {
+  const [friends, setFriends] = useState(initialFriends)
+
+  const handleAddFriend = (newFriend) => {
+    setFriends((friends) => [...friends, newFriend])
+  }
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -33,8 +40,8 @@ function App() {
       </Grid>
       <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Grid item xs={5}>
-          <FriendsList friends={initialFriends} />
-          <FormAddFriend />
+          <FriendsList friends={friends} />
+          <FormAddFriend onAddFriend={handleAddFriend} />
         </Grid>
         <Grid item xs={5}>
           <FormSplitBill />
