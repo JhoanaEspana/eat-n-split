@@ -122,6 +122,9 @@ const components = {
         '&.Mui-focused': {
           backgroundColor: '#ECF0F5',
         },
+        '&.Mui-disabled': {
+          backgroundColor: '#DCE1E9',
+        },
       },
     },
   },

@@ -12,17 +12,11 @@ const FormAddFriend = () => {
       <Card sx={{ py: '35px', px: '25px' }}>
         <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
           <IcoFormUserPlus />
-          <TextField
-            id='nameFriend'
-            label='Friend name'
-            fullWidth
-            variant='filled'
-            size='small'
-          />
+          <TextField label='Friend name' fullWidth variant='filled' size='small' />
         </Stack>
         <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
           <IcoFormImage />
-          <TextField id='imageUrl' label='Image Url' fullWidth variant='filled' size='small' />
+          <TextField label='Image Url' fullWidth variant='filled' size='small' />
         </Stack>
         <Box
           sx={{
