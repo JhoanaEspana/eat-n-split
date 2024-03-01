@@ -10,4 +10,5 @@ Used technology:
 
 [ Knowledge: React, State, DerivedState, Props, Events, Forms ]
 
-![Descripción de la imagen](https://github.com/JhoanaEspana/eat-n-split/blob/main/src/assets/app.png)
+![Sistema de diseño](https://github.com/JhoanaEspana/eat-n-split/blob/main/src/assets/app2.png)
+![Sistema de diseño](https://github.com/JhoanaEspana/eat-n-split/blob/main/src/assets/app.png)
