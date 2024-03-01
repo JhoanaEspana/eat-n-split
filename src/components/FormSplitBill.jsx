@@ -17,34 +17,77 @@ import {
   IcoFormOtherExpense,
   IcoFormPlaying,
 } from './ui/icons'
+import { useState } from 'react'
 
-const FormSplitBill = () => {
+const FormSplitBill = ({ selectedFriend, onSplitBill }) => {
+  const [bill, setBill] = useState('')
+  const [paidByUser, setPaidByUser] = useState('')
+  let paidByFriend = bill ? bill - paidByUser : ''
+  const [whoIsPaying, setWhoIsPaying] = useState('user')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!bill || !paidByUser) return
+
+    onSplitBill(whoIsPaying === 'user' ? paidByFriend : -paidByUser)
+    setBill('')
+    setPaidByUser('')
+    paidByFriend = ''
+    setWhoIsPaying('user')
+  }
+
   return (
     <>
       <Stack direction='row' justifyContent='space-between' alignItems='center'>
-        <Title title={'Split a bill with X'} icon={<IcoBill />} />
+        <Title title={`Split a bill with ${selectedFriend.name}`} icon={<IcoBill />} />
       </Stack>
       <Card sx={{ py: '40px', px: '35px' }}>
-        <Box component='form' autoComplete='off'>
+        <Box component='form' autoComplete='off' onSubmit={handleSubmit}>
           <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
             <IcoFormBillValue />
-            <TextField label='Bill value' fullWidth variant='filled' size='small' />
+            <TextField
+              value={bill}
+              onChange={(e) => setBill(Number(e.target.value))}
+              label='Bill value'
+              fullWidth
+              variant='filled'
+              size='small'
+            />
           </Stack>
           <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
             <IcoFormExpense />
-            <TextField label='Your expense' fullWidth variant='filled' size='small' />
+            <TextField
+              value={paidByUser}
+              onChange={(e) =>
+                setPaidByUser(
+                  Number(e.target.value) > bill ? paidByUser : Number(e.target.value)
+                )
+              }
+              label='Your expense'
+              fullWidth
+              variant='filled'
+              size='small'
+            />
           </Stack>
           <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
             <IcoFormOtherExpense />
-            <TextField label='X’s expense' fullWidth variant='filled' size='small' disabled />
+            <TextField
+              label={`${selectedFriend.name}’s expense`}
+              value={paidByFriend}
+              fullWidth
+              variant='filled'
+              size='small'
+              disabled
+            />
           </Stack>
           <Stack direction='row' alignItems='center' spacing={2} sx={{ pb: '30px' }}>
             <IcoFormPlaying />
             <FormControl variant='filled' fullWidth>
               <InputLabel>Who is paying the bill?</InputLabel>
-              <Select defaultValue=''>
+              <Select value={whoIsPaying} onChange={(e) => setWhoIsPaying(e.target.value)}>
                 <MenuItem value='user'>You</MenuItem>
-                <MenuItem value='friend'>X</MenuItem>
+                <MenuItem value='friend'>{selectedFriend.name}</MenuItem>
               </Select>
             </FormControl>
           </Stack>
@@ -54,7 +97,12 @@ const FormSplitBill = () => {
               justifyContent: 'flex-end',
             }}
           >
-            <Button variant='contained' sx={{ alignSelf: 'flex-end' }}>
+            <Button
+              variant='contained'
+              type='submit'
+              disabled={!bill || !paidByUser}
+              sx={{ alignSelf: 'flex-end' }}
+            >
               Split bill
             </Button>
           </Box>

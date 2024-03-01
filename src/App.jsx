@@ -28,9 +28,32 @@ const initialFriends = [
 
 function App() {
   const [friends, setFriends] = useState(initialFriends)
+  const [showAddFriend, setShowAddFriend] = useState(false)
+  const [selectedFriend, setSelectedFriend] = useState(null)
+
+  const toggleShowAddFriend = () => {
+    setShowAddFriend((prevShowAddFriend) => !prevShowAddFriend)
+  }
 
   const handleAddFriend = (newFriend) => {
     setFriends((friends) => [...friends, newFriend])
+    setShowAddFriend(false)
+  }
+
+  const handleSelection = (newFriend) => {
+    // setSelectedFriend(newFriend)
+    setSelectedFriend((current) => (current?.id === newFriend.id ? null : newFriend))
+    setShowAddFriend(false)
+  }
+
+  const handleSplitBill = (value) => {
+    setFriends((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    )
   }
 
   return (
@@ -40,11 +63,21 @@ function App() {
       </Grid>
       <Grid container sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Grid item xs={5}>
-          <FriendsList friends={friends} />
-          <FormAddFriend onAddFriend={handleAddFriend} />
+          <FriendsList
+            friends={friends}
+            onSelection={handleSelection}
+            selectedFriend={selectedFriend}
+          />
+          <FormAddFriend
+            onAddFriend={handleAddFriend}
+            onToggleShowAddFriend={toggleShowAddFriend}
+            showAddFriend={showAddFriend}
+          />
         </Grid>
         <Grid item xs={5}>
-          <FormSplitBill />
+          {selectedFriend && (
+            <FormSplitBill selectedFriend={selectedFriend} onSplitBill={handleSplitBill} />
+          )}
         </Grid>
       </Grid>
     </Grid>

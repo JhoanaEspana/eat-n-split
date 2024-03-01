@@ -4,14 +4,9 @@ import Title from './ui/Title'
 import { IcoFormUserPlus, IcoUserPlus, IcoFormImage } from './ui/icons'
 import { useState } from 'react'
 
-const FormAddFriend = ({ onAddFriend }) => {
-  const [showAddFriend, setShowAddFriend] = useState(false)
+const FormAddFriend = ({ onAddFriend, onToggleShowAddFriend, showAddFriend }) => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('https://i.pravatar.cc/48')
-
-  const toggleShowAddFriend = () => {
-    setShowAddFriend((showAddFriend) => !showAddFriend)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -35,7 +30,7 @@ const FormAddFriend = ({ onAddFriend }) => {
     <Box sx={{ mt: '50px' }}>
       <Stack direction='row' justifyContent='space-between' alignItems='center'>
         <Title title={'Add friends'} icon={<IcoUserPlus />} />
-        <Button variant='outlined' onClick={toggleShowAddFriend}>
+        <Button variant='outlined' onClick={onToggleShowAddFriend}>
           {showAddFriend ? 'Close panel' : 'Add friend'}
         </Button>
       </Stack>

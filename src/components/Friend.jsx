@@ -1,8 +1,18 @@
 import { Avatar, Box, Button, Card, Typography } from '@mui/material'
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, onSelection, selectedFriend }) => {
+  const isSelected = selectedFriend?.id === friend.id
+
   return (
-    <Card>
+    <Card
+      sx={{
+        backgroundColor: isSelected ? '#ECF0F5' : '#FFF',
+        '&:hover': {
+          backgroundColor: '#ECF0F5',
+          border: '1px solid #DCE1E9',
+        },
+      }}
+    >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ display: 'flex' }}>
           <Avatar alt={friend.name} src={friend.image} />
@@ -35,8 +45,13 @@ const Friend = ({ friend }) => {
             )}
           </Box>
         </Box>
-        <Button variant='contained' size='small' color='primary'>
-          Select
+        <Button
+          variant='contained'
+          size='small'
+          color={isSelected ? 'secondary' : 'primary'}
+          onClick={() => onSelection(friend)}
+        >
+          {isSelected ? 'Close' : 'Select'}
         </Button>
       </Box>
     </Card>
