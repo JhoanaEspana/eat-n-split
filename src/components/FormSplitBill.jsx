@@ -100,7 +100,7 @@ const FormSplitBill = ({ selectedFriend, onSplitBill }) => {
             <Button
               variant='contained'
               type='submit'
-              disabled={!bill}
+              disabled={!bill || !paidByUser}
               sx={{ alignSelf: 'flex-end' }}
             >
               Split bill
