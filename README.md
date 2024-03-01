@@ -9,3 +9,5 @@ Used technology:
 ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
 [ Knowledge: React, State, DerivedState, Props, Events, Forms ]
+
+<span>(</span><span>https://github.com/JhoanaEspana/eat-n-split/blob/main/src/assets/app.png</span><span>)</span>
